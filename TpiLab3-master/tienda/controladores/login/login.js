@@ -127,6 +127,7 @@ async function  ingresar(e){
         setUsuarioAutenticado(true,idUsuario);
         mostrarUsuario(inputEmail.value);
         mostrarMensaje('Usuario Ingresado Correctamente!');
+        window.location.href = "";
     }
     else{
         mostrarMensaje('Email o contraseña incorrecto, intenta nuevamente');
@@ -187,10 +188,9 @@ export function mostrarUsuario(email){
     let btnRegister = document.querySelector('.btnRegister');
     
     btnLogin.textContent = email;
+    btnLogin.removeAttribute('href');
     btnRegister.textContent = 'Logout';
     btnRegister.href = '#logout';
-    
-    
 
 }
 
@@ -209,7 +209,13 @@ export function setUsuarioAutenticado(booleano, idUsuario) {
      */
     sessionStorage.setItem('autenticado', booleano);
     sessionStorage.setItem('idUsuario', idUsuario);
-    sessionStorage.setItem('email', inputEmail.value);
+    if (booleano && inputEmail?.value) {
+        // Si se está autenticando y el inputEmail está disponible, usarlo
+        sessionStorage.setItem('email', inputEmail.value);
+    } else if (!booleano) {
+        // Si se está cerrando sesión, limpiar el email
+        sessionStorage.setItem('email', "");
+    }
 
 }
 export function getUsuarioAutenticado() {
