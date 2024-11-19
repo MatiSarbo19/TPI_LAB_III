@@ -29,6 +29,7 @@ export function RouterTienda(){
         Carrusel();
         listarProductos();
         
+        
     }    
     console.log (hash);
 }

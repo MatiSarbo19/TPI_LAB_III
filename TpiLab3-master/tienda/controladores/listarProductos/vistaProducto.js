@@ -4,7 +4,7 @@ import { ventasServices } from "../../../servicios/ventas-servicios.js";
 import { getUsuarioAutenticado } from "../login/login.js";
 
 export async function vistaProducto(){
-    /**1-En esta función se deben capturar los elementos html: .carrusel, .seccionProducto, .seccionLogin. Para luego 
+    /**1-En esta función se deben capturar los elementos html: .carrusel, .seccionProductos, .seccionLogin. Para luego 
      * blanquear su contenido. 
      * 2-Se deberá capturar el elemento .vistaProducto.
      * 3-Se deberá llamar a la función leerParametro para recuperar de la url el idProducto. 
@@ -14,6 +14,62 @@ export async function vistaProducto(){
      * 7-Se deberá capturar el elemento html correspondiente al anchor btnComprar y enlazar el evento click a la función registrarCompra.  
     */
    
+    const carrusel = document.querySelector('.carrusel');
+    const seccionProducto = document.querySelector('.seccionProductos');
+    const seccionLogin = document.querySelector('.seccionLogin');
+    carrusel.innerHTML = '';
+    seccionProducto.innerHTML = '';
+    seccionLogin.innerHTML = '';
+
+    
+    const vistaProducto = document.querySelector('.vistaProducto');
+
+    
+    const idProducto = leerParametro();
+    if (!idProducto) {
+        alert('Producto no encontrado');
+        return;
+    }
+
+    
+    try {
+        const producto = await productosServices.listar(idProducto);
+
+        
+        if (!producto || !producto.id) {
+            alert('Producto no encontrado');
+            return;
+        }
+
+        
+        const contenidoProducto = htmlVistaProducto(
+            producto.id,
+            producto.nombre,
+            producto.descripcion,
+            producto.precio,
+            producto.foto 
+        );
+
+        
+        vistaProducto.innerHTML = contenidoProducto;
+
+        
+        const btnComprar = document.querySelector('#btnComprar');
+        if (btnComprar) {
+            btnComprar.addEventListener('click', registrarCompra);
+        }
+        const btnVolver = document.querySelector('#btnVolver')
+        if (btnVolver){
+            btnVolver.addEventListener('click',volver)
+        }
+    } catch (error) {
+        console.error('Error al obtener el producto:', error);
+        alert('Ocurrió un error al cargar el producto.');
+    }
+}
+
+function volver(){
+    location.replace("tienda.html")
 }
 
 function htmlVistaProducto(id, nombre, descripcion, precio, imagen) {
@@ -27,8 +83,26 @@ function htmlVistaProducto(id, nombre, descripcion, precio, imagen) {
      *   let cadena = `Hola, ${titulo} Claudia  en que podemos ayudarla`;
      *   
     */
-    
+    let html = `
+        <div class="imagen">
+            <img src="${imagen}" alt="producto">
+        </div>
+        <div class="texto">
+            <p id="nameProducto" data-idProducto="${id}">${nombre}</p>
+            <p id="descripcionProducto">${descripcion}</p>
+            <p id="precioProducto">${precio}</p>
+            <div class="form-group">
+                <label for="cantidadProducto">Cantidad</label>
+                <input type="number" step="1" min="1" value="1" id="cantidadProducto">
+            </div>
+            <a id="btnComprar">Comprar</a>
+            <a id="btnVolver">Volver</a>
+        </div>
+    `;
+    return html;
 }
+
+
 function leerParametro(){
     // Captura el idProducto de la dirección URL enviada por la página que llama
     const words = new URLSearchParams(window.location.search);
@@ -38,7 +112,7 @@ function leerParametro(){
 }
 
 
-function registrarCompra(){
+async function registrarCompra(){
     /**1-Esta función es la encargada de procesar el evento click del anchor btnComprar.
      * 2-Luego deberá recuperar con la función getUsuarioAutenticado presente en el módulo login.js el objeto session
      * 3-Si la propiedad autenticado del objeto session es falso, el usuario no ha iniciado sesión, y se deberá emitir 
@@ -57,6 +131,32 @@ function registrarCompra(){
      * 10-Finalmente emitimos una alerta con la leyenda "Compra finalizada."
      *     
      */
-    
+     
+     const session = getUsuarioAutenticado(); 
+
+     if (!session || !session.autenticado) {
+         alert('Debes iniciar sesión para realizar una compra.');
+         return;
+     }
+ 
+     const idUsuario = session.idUsuario;
+     const emailUsuario = session.email;
+     const idProducto = document.querySelector('#nameProducto').getAttribute('data-idproducto');
+     const nameProducto = document.querySelector('#nameProducto').innerText;
+     const cantidad = parseInt(document.querySelector('#cantidadProducto').value);
+     const fecha = new Date().toISOString(); 
+ 
+     
+     await ventasServices.crear(
+        idUsuario,
+        emailUsuario,
+        idProducto,
+        nameProducto,
+        cantidad,
+        fecha
+    );
+ 
+     location.replace("tienda.html");
+     alert('Compra finalizada.');
     
 }
