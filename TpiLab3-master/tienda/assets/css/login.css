@@ -2,49 +2,181 @@
     margin:0;
     box-sizing: border-box;
 }
-.contenedorLogin{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   height: 80vh;
+.contenedorLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+ }
+ 
+body {
+    position: relative;
+    overflow: hidden;
+}
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://s1.1zoom.me/big0/360/Skyscrapers_Roads_Houses_458779.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    z-index: -1; 
+    backdrop-filter: blur(4px); 
+    animation: myAnim 20s linear 2s infinite alternate none;
+}
+
+body.no-background::before {
+    background-image: none;
+}
+
+
+#caja-foto, #caja-contenido {
+    background-color: rgb(0, 0, 0);
+    width: 400px;
+    height: 60vh;
+}
+
+#caja-foto {
+    background-image: url("https://burst.shopifycdn.com/photos/fashion-model-poses.jpg?exif=0&iptc=0");
+    background-size: cover;
+}
+#caja-contenido {
+    background-color: rgba(242, 175, 92, 0.8); 
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(71, 57, 44, 0.8), transparent 20%);
+    background-repeat: no-repeat;
+    height: 100%;
 }
 
 .cajaLogin{
-    
-    padding: 2rem;
-    border: 1px solid rgba(128, 128, 128, 0.507);
     border-radius: 0.3rem;
-    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 0 10px 7px #282a2d ;
+    column-gap: 3px;
+    column-rule-color: rgb(0, 0, 0);
+    column-rule-style: solid;
+    background-color: #282a2dc2;
 }
 
 .cajaLogin p{
     color: rgb(63, 62, 62);
     font-size: 3rem;
     font-weight: 300;
-    padding: 2rem 12rem;
+    padding: 1.2rem;
+    font-weight: bold ;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
        
+}
+.formLogin {
+    width: 90%;
 }
 
 .input-group input{
     width: 100%;
     font-size: 1.6rem;
     margin:1rem 0;
-    border: 1px solid  rgba(128, 128, 128, 0.5);
     border-radius: 0.3rem;
     padding:  0.8rem;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    color: white;
 }
 .btnAmarillo{
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: 0.2rem;
-   
+    color: black;
     width: 100%;
     padding: 1rem;
+    border: 1px solid black;
     border-radius: 0.4rem;
-    background-color: rgba(248, 187, 7, 1);
+    background-color: #cca480a2;
+    margin-top: 20px;
 }
+
+.btnAmarillo:hover{
+    cursor: pointer;
+    box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
+    -webkit-box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
+    -moz-box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
+    background-color: #aa3434;
+    transition: all 200ms;
+}
+
+
 /*Oculto la verificación de contraseña*/
 #reLoginPassword{
     display: none;
 }
 
+.contenedor_login-register {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 90%;
+    color: rgba(66, 65, 65, 0.171);
+    height: 10%;
+    margin-top: 30px;
+}
+
+.btnLogin1, .btnRegister1 {
+    text-align: center;
+    font-size: small;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid black;
+    border-radius: 0.4rem;
+    width: 40%;
+    align-self: left;
+    letter-spacing: 0.1rem;
+}
+.btnLogin1:hover, .btnRegister1:hover{
+    cursor: pointer;
+    box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
+    -webkit-box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
+    -moz-box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
+    transition: all 200ms;
+}
+
+#logo-iniciosesion {
+    background-image: url("https://www.verificacionbc.org.mx/images/login.png");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.contenedor_login-register a {
+    margin: 0 2px;
+}
+
+.contenedor_login-register:hover {
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+footer {
+    border-top: none;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+@keyframes myAnim {
+	0% {
+		background-position: 50% 100%;
+	}
+
+	100% {
+		background-position: 50% 0%;
+	}
+}
