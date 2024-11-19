@@ -8,7 +8,7 @@ const htmlLogin=
     <div class="cajaLogin">
         <div id="caja-foto"></div>
         <div id="caja-contenido">
-            
+            <div id="logo-iniciosesion"></div>
             <p id="inicio-registro">Iniciar sesión</p>
             <form  class="formLogin" >
 

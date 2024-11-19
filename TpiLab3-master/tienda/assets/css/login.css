@@ -70,7 +70,7 @@ body.no-background::before {
     color: rgb(63, 62, 62);
     font-size: 3rem;
     font-weight: 300;
-    padding: 2rem;
+    padding: 1.2rem;
     font-weight: bold ;
     text-align: center;
     width: 100%;
@@ -79,7 +79,6 @@ body.no-background::before {
 }
 .formLogin {
     width: 90%;
-    
 }
 
 .input-group input{
@@ -148,6 +147,13 @@ body.no-background::before {
     -webkit-box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
     -moz-box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
     transition: all 200ms;
+}
+
+#logo-iniciosesion {
+    background-image: url("https://www.verificacionbc.org.mx/images/login.png");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
 }
 
 .contenedor_login-register a {
