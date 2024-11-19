@@ -9,7 +9,7 @@ export function RouterTienda(){
     let hash = location.hash;
    
     if (hash === '#vistaProducto'){
-        
+        hideBackground()
         vistaProducto();
 
     }else if (hash === '#login' ) {
@@ -50,7 +50,9 @@ function setSession(session){
 function hideBackground() {
     const body = document.querySelector("body");
     body.classList.add("no-background"); // Oculta el fondo
+    body.style.overflow = "auto"; // Permite el desplazamiento
 }
+
 
 function showBackground() {
     const body = document.querySelector("body");
