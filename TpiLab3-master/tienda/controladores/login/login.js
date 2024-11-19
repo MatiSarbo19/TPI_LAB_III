@@ -6,37 +6,43 @@ const htmlLogin=
 `
 <div class="contenedorLogin">
     <div class="cajaLogin">
-        <p >Iniciar sesión</p>
-
-        <form  class="formLogin" >
-
-            <div class="input-group">
-                
-                <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail" autocomplete required>
-                
-            </div>
-
-            <div class="input-group">
-                
-                <input type="password" class="form-control" id="loginPassword" placeholder="Password" name="loginPassword" autocomplete required>
+        <div id="caja-foto"></div>
+        <div id="caja-contenido">
             
-            </div>
+            <p id="inicio-registro">Iniciar sesión</p>
+            <form  class="formLogin" >
 
-            <div class="input-group">
-                
-                <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Password" name="reLoginPassword"  required>
-            
-            </div>
-                        
-            <div class="row">
-                                
-                <div class="col-4">
-                <button type="submit"  id="iniciar-sesion" class="btnAmarillo">Login</button>
-                </div>
+                <div class="input-group">
                     
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail" autocomplete required>
+                    
+                </div>
+
+                <div class="input-group">
+                    
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Password" name="loginPassword" autocomplete required>
+                
+                </div>
+
+                <div class="input-group">
+                    
+                    <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Password" name="reLoginPassword"  required>
+                
+                </div>
+                            
+                <div class="row">
+                                    
+                    <div class="col-4">
+                    <button type="submit"  id="iniciar-sesion" class="btnAmarillo">Login</button>
+                    </div>
+                        
+                </div>
+            </form>
+            <div class="contenedor_login-register">
+                <a href="#login" class="btnLogin1" data-emailUsuario="" data-idUsuario="">Iniciar Sesión</a>
+                <a href="#register" class="btnRegister1">Registrarse</a>
             </div>
-        </form>
-            
+        </div>
     </div>
 </div>
 `;
@@ -93,15 +99,24 @@ function crearFormulario(registrar){
     inputEmail = document.getElementById('loginEmail');
     inputPassword = document.getElementById('loginPassword');
     inputRepetirPass = document.getElementById('reLoginPassword');
+    let tituloLogin = document.querySelector('#inicio-registro');
+    let botonRegistro = document.querySelector('.btnRegister1');
+    let botonInicioSesion = document.querySelector('.btnLogin1');
 
     if (!registrar){
+        tituloLogin.textContent = "Iniciar sesión";
         inputRepetirPass.value = '';
         inputRepetirPass.style.display = 'none';
         inputRepetirPass.removeAttribute('required');
+        botonRegistro.style.display = "block";
+        botonInicioSesion.style.display = "none";
     }
     else{
+        tituloLogin.textContent = "Registrarse";
         inputRepetirPass.style.display = 'block';
         inputRepetirPass.setAttribute('required', 'true');
+        botonRegistro.style.display = "none";
+        botonInicioSesion.style.display = "block";
     }
 
     formulario = document.querySelector('.formLogin');
