@@ -20,13 +20,13 @@ const htmlLogin=
 
                 <div class="input-group">
                     
-                    <input type="password" class="form-control" id="loginPassword" placeholder="Password" name="loginPassword" autocomplete required>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Contraseña" name="loginPassword" autocomplete required>
                 
                 </div>
 
                 <div class="input-group">
                     
-                    <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Password" name="reLoginPassword"  required>
+                    <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Contraseña" name="reLoginPassword"  required>
                 
                 </div>
                             
@@ -102,6 +102,7 @@ function crearFormulario(registrar){
     let tituloLogin = document.querySelector('#inicio-registro');
     let botonRegistro = document.querySelector('.btnRegister1');
     let botonInicioSesion = document.querySelector('.btnLogin1');
+    let botonSubmit = document.getElementById("iniciar-sesion")
 
     if (!registrar){
         tituloLogin.textContent = "Iniciar sesión";
@@ -117,6 +118,7 @@ function crearFormulario(registrar){
         inputRepetirPass.setAttribute('required', 'true');
         botonRegistro.style.display = "none";
         botonInicioSesion.style.display = "block";
+        botonSubmit.textContent = "Registrarse"
     }
 
     formulario = document.querySelector('.formLogin');
@@ -137,6 +139,9 @@ async function  ingresar(e){
      * 5- En el caso de que el usuario no sea válido se deberá mostrar una alerta con el texto 'Email o contraseña incorrecto, intenta nuevamente'.
      */
     e.preventDefault();
+
+    limpiarErrores([inputEmail, inputPassword]);
+
     let idUsuario = await usuarioExiste();
     if(idUsuario){
         setUsuarioAutenticado(true,idUsuario);
@@ -145,31 +150,54 @@ async function  ingresar(e){
         window.location.href = "";
     }
     else{
-        mostrarMensaje('Email o contraseña incorrecto, intenta nuevamente');
+        mostrarErrores([
+            { campo: "loginEmail", mensaje: "Email o contraseña incorrectos." }])
     }
 
 }
 
-async function  registrarUsuario(e){
-    /**
-     * 1- Esta función tiene como objetivo controlar que el texto en inputPassword sea exactamente igual al texto ingresado en
-     *    inputRepetirPass y luego registrar la cuenta en el REST-API.
-     * 2- Para ello en primera instancia deberá cancelar el comportamiento por defecto del envento recibido . Para ello deberá
-     *    tomar el parámetro evento ( e ) y ejecutar el método preventDefault().
-     * 3- Luego se comparará con una estructura de decisión si los textos ingresados en los controles mencionados son exactamente iguales.
-     * 4- En caso afirmativo utilizando usuariosServices mediante el método crear, dará de alta el nuevo usuario.
-     * 5- Deberá mostrar una alerta con la leyenda "Email registrado" y cambiará el valor del objeto window.location.href a "#login", para que
-     *    se muestre la pantalla de login. 
-     * 5- En caso negativo o falso mostrará una alerta indicando que las contraseñas ingresadas no son iguales.  
-     */
+
+async function registrarUsuario(e) {
     e.preventDefault();
-    if (inputPassword.value === inputRepetirPass.value){
-        usuariosServices.crear(null,null, inputEmail.value, inputPassword.value,null,null,null,null,null,'cliente');
-        mostrarMensaje('Email registrado');
-        window.location.href = "#login";
+    // Limpiamos los mensajes y estilos previos
+    limpiarErrores([inputEmail, inputPassword, inputRepetirPass]);
+
+    // Validamos los datos ingresados
+    const errores = validacionDatosRegistrar(
+        inputEmail.value.trim(),
+        inputPassword.value.trim(),
+        inputRepetirPass.value.trim()
+    );
+
+    if (await emailExiste(inputEmail.value.trim())) {
+        errores.push({ campo: "loginEmail", mensaje: "El email ya está registrado." });
     }
-    else{
-        mostrarMensaje('Las Contraseñas ingresadas no coinciden');
+
+    // Si hay errores, los mostramos y detenemos el flujo
+    if (errores.length > 0) {
+        mostrarErrores(errores);
+        return;
+    }
+
+    // Si no hay errores, procedemos con el registro
+    try {
+        await usuariosServices.crear(
+            null,
+            null,
+            inputEmail.value.trim(),
+            inputPassword.value.trim(),
+            null,
+            null,
+            null,
+            null,
+            null,
+            'cliente'
+        );
+        mostrarMensaje('Email registrado exitosamente');
+        window.location.href = "#login"; // Redirigimos al usuario
+    } catch (error) {
+        mostrarMensaje('Error al registrar el usuario. Por favor, intenta nuevamente.');
+        console.error(error);
     }
 }
 async function usuarioExiste() {
@@ -245,4 +273,57 @@ export function getUsuarioAutenticado() {
         email: sessionStorage.getItem('email'),
     };
        
+}
+
+function validacionDatosRegistrar(password, repeatpassword) {
+    const errores = [];
+
+    // Validación de la seguridad de la contraseña
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (password && !passwordRegex.test(password)) {
+        errores.push({ campo: "loginPassword",mensaje: "La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número." });
+    }
+
+
+    // Validación de coincidencia de contraseñas
+    if (password && repeatpassword && password !== repeatpassword) {
+        errores.push({ campo: "reLoginPassword", mensaje: "Las contraseñas no coinciden." });
+    }
+
+    return errores;
+}
+
+function mostrarErrores(errores) {
+    errores.forEach((error) => {
+        const input = document.getElementById(error.campo);
+        const errorText = document.createElement("small");
+        errorText.className = "error-text";
+        errorText.textContent = error.mensaje;
+
+        input.classList.add("input-error");
+
+        input.parentElement.appendChild(errorText);
+    });
+}
+
+function limpiarErrores(inputs) {
+    inputs.forEach((input) => {
+        
+        input.classList.remove("input-error");
+
+        const errorText = input.parentElement.querySelector(".error-text");
+        if (errorText) {
+            errorText.remove();
+        }
+    });
+}
+
+async function emailExiste(email) {
+    let usuarios = await usuariosServices.listar(); // Obtenemos todos los usuarios
+    for (let usuario of usuarios) {
+        if (usuario.correo === email) {
+            return true; // El email ya está registrado
+        }
+    }
+    return false; // El email no está registrado
 }

@@ -25,12 +25,9 @@ export function RouterTienda(){
         location.replace("tienda.html");
 
     }else if (hash === '' ) {
-        
+        hideBackground()
         Carrusel();
         listarProductos();
-        
-        
-        hideBackground()
     }    
     console.log (hash);
 }
