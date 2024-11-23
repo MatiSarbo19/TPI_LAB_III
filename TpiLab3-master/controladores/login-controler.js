@@ -68,7 +68,7 @@ async function usuarioExiste() {
         sessionStorage.setItem('usuarioId', usuarioId);
         sessionStorage.setItem('usuarioActivo', usuarioActivo);
         sessionStorage.setItem('usuarioFoto', usuarioFoto);
-
+        
         setUsuarioAutenticado(true); 
         window.location.href = "#/home" ;
     }

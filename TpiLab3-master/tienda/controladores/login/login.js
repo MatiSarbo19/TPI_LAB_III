@@ -159,6 +159,7 @@ async function  ingresar(e){
 
 async function registrarUsuario(e) {
     e.preventDefault();
+    const fotoAvatar = "../../../img/usuarios/default/anonymous.png"
     // Limpiamos los mensajes y estilos previos
     limpiarErrores([inputEmail, inputPassword, inputRepetirPass]);
 
@@ -186,7 +187,7 @@ async function registrarUsuario(e) {
             null,
             inputEmail.value.trim(),
             inputPassword.value.trim(),
-            null,
+            fotoAvatar,
             null,
             null,
             null,

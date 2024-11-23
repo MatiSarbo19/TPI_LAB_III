@@ -5,9 +5,9 @@ const htmlHome =
 ` <div class="row" >
     <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-info">
+        <div class="small-box">
             <div class="inner">
-            <h3 id="indVentas">150</h3>
+            <h3 id="indVentas">Cargando...</h3>
 
             <p>Ventas</p>
             </div>
@@ -20,9 +20,9 @@ const htmlHome =
     <!-- ./col -->
     <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-success">
+        <div class="small-box">
             <div class="inner">
-            <h3 id="indSindespachar">53</h3>
+            <h3 id="indSindespachar">Cargando...</h3>
 
             <p>Sin despachar</p>
             </div>
@@ -35,9 +35,9 @@ const htmlHome =
     <!-- ./col -->
     <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-warning">
+        <div class="small-box">
             <div class="inner">
-            <h3 id="indUsuarios">44</h3>
+            <h3 id="indUsuarios">Cargando...</h3>
 
             <p>Usuarios Registrados</p>
             </div>
@@ -50,9 +50,9 @@ const htmlHome =
     <!-- ./col -->
     <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-danger">
+        <div class="small-box">
             <div class="inner">
-            <h3 id="indProductos">65</h3>
+            <h3 id="indProductos">Cargando...</h3>
 
             <p>Productos</p>
             </div>

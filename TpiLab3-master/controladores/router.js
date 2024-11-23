@@ -6,15 +6,18 @@ import { Ventas } from "./ventas/ventas.js";
 
 export function Router(){
     let hash = location.hash;
-    //CAMBIAR MENU ACTIVO
-    let origen = document.querySelector("a[href^='" + hash + "']");
-    if (origen ){
-        if ( origen.className.indexOf('nav-link') >= 0 ) {
-            document.querySelector('.nav-item .active').classList.remove('active');
-            document.querySelector("a[href^='" + hash + "']").classList.add('active');
-         }
+
+    if (!hash || hash === '#') {
+        hash = '#/home';
     }
 
+    let origen = document.querySelector(`a[href^='${hash}']`);
+    
+    let activoActual = document.querySelector('.nav-item .active');
+        
+    activoActual.classList.remove('active');
+       
+    origen.classList.add('active');
 
     if (hash === '#/usuarios'){
         Usuarios();
@@ -22,12 +25,12 @@ export function Router(){
     }else if(hash==='#/categorias'){
         Categorias();
         
-    }else if(( hash==='#/home') || (hash==='') || (hash==='#')){
+    }else if(( hash==='#/home')){
         Home();
     }else if(hash==='#/productos'){
         Productos();
     }else if(hash==='#/ventas'){
         Ventas();
     }     
-    console.log (hash);
+    
 }

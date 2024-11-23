@@ -1,4 +1,154 @@
 .navbar-custom {
-    background-color: #BF3B3B; /* Cambia a cualquier color que desees */
+    background-color: #8C2B2B;
+    border: none;
 }
 
+.aside-custom {
+    background-color: #8C2B2B;
+}
+
+.info a{
+    color: rgb(26, 24, 24);
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4)
+}
+
+.nav-item p{
+    color: rgb(26, 24, 24);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ 
+}
+
+.nav-icon{
+    color: rgb(26, 24, 24);
+}
+
+.nav-link.active{
+    background-color: #A68568 !important;
+}
+
+.main-footer{
+    background-color: #8C2B2B;
+    border: none;
+}
+
+.pie-pag{
+    text-align: end;
+}
+
+.content-wrapper{
+    background-color: #A68568;
+}
+
+.rutaMenu{
+    color: rgb(26, 24, 24);
+}
+
+.small-box{
+    background-color: #F2AF5C;
+}
+
+.small-box-footer{
+    color:rgb(26, 24, 24) !important;
+}
+
+.card{
+    background-color: #A68568 ;
+}
+
+
+.card .table {
+    border-collapse: collapse; /* Colapsa los bordes para que no se dupliquen */
+    width: 100%; /* La tabla ocupará todo el ancho disponible */
+    border: 1px solid black; /* Borde negro alrededor de la tabla */
+}
+
+.card .table th, .card .table td {
+    border: 1px solid black; /* Borde negro en las celdas */
+    padding: 8px; /* Espaciado interno */
+    text-align: left; /* Alineación del texto en las celdas */
+}
+
+.card .table tr {
+    border-bottom: 1px solid black; /* Borde inferior en las filas */
+}
+
+.card .form-control {
+    background-color: #A68568;
+    border: black 1px solid;                
+}
+
+.pagination .previous .page-link {
+    background-color: #A68568;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;  
+    color:rgb(26, 24, 24) ;
+}
+
+.pagination .next .page-link {
+    background-color: #A68568;
+    border: none;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; 
+    color:rgb(26, 24, 24) ;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #F2AF5C; 
+    border-color: #F2AF5C;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);     
+}
+
+.btnAgregarUsuario{
+    background-color: #F2AF5C !important;
+    color:rgb(26, 24, 24) !important ;
+}
+
+.btnAgregarCategoria{
+    background-color: #F2AF5C !important;
+    color:rgb(26, 24, 24) !important ;
+}
+
+.btnAgregarProducto{
+    background-color: #F2AF5C !important;
+    color:rgb(26, 24, 24) !important ;
+}
+
+input[type="checkbox"].ckboxDespachado {
+    appearance: none; 
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: rgb(26, 24, 24) solid 1px; 
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"].ckboxDespachado::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 3px;
+    transition: background-color 0.3s ease; 
+}
+
+input[type="checkbox"].ckboxDespachado:checked::before {
+    background-color: #F2AF5C;
+    border-color: #F2AF5C; 
+}
+
+input[type="checkbox"].ckboxDespachado:checked::after {
+    content: '\2713';
+    position: absolute;
+    top: 0;
+    left: 3px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+}
