@@ -105,16 +105,32 @@
 .btnAgregarUsuario{
     background-color: #F2AF5C !important;
     color:rgb(26, 24, 24) !important ;
+    border: none;
+}
+a.btnAgregarUsuario:hover {
+    background-color: #ed9b35 !important;
+    border: none;
 }
 
 .btnAgregarCategoria{
     background-color: #F2AF5C !important;
     color:rgb(26, 24, 24) !important ;
+    border: none;
+}
+
+a.btnAgregarCategoria:hover {
+    background-color: #ed9b35 !important;
+    border: none;
 }
 
 .btnAgregarProducto{
     background-color: #F2AF5C !important;
     color:rgb(26, 24, 24) !important ;
+    border: none;
+}
+a.btnAgregarProducto:hover {
+    background-color: #ed9b35 !important;
+    border: none;
 }
 
 input[type="checkbox"].ckboxDespachado {
@@ -151,4 +167,37 @@ input[type="checkbox"].ckboxDespachado:checked::after {
     left: 3px;
     color: rgb(0, 0, 0);
     font-size: 14px;
+}
+
+
+.custom-file-label{
+    background-color: #A68568;
+    border: rgb(26, 24, 24) solid 1px; 
+}
+.custom-file-label::after{
+    background-color: #A68568;
+    border: rgb(26, 24, 24) solid 1px;     
+}
+
+
+.input-group-text {
+    border:rgb(26, 24, 24) solid 1px;
+    background-color: #A68568 !important;
+}
+
+.btn{
+    background-color: #F2AF5C !important;
+    border: none !important;
+    color: black !important;
+}
+
+.btn:hover {
+    background-color: #f4a23d !important;
+    border: none!important;
+}
+
+button.btn:hover {
+    background-color: #f4a23d !important;
+    border: none!important;
+    
 }
