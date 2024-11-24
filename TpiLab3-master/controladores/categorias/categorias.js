@@ -30,124 +30,136 @@ const htmlCategorias =
    <!-- /.card-body -->
 </div> `; 
 
-export async function Categorias(){
-    let d = document
-    let res='';
+export async function Categorias() {
+    let d = document;
+    let res = '';
+    
+    // Configuración inicial de la página
     d.querySelector('.contenidoTitulo').innerHTML = 'Categorías';
     d.querySelector('.contenidoTituloSec').innerHTML = '';
     d.querySelector('.rutaMenu').innerHTML = "Categorías";
-    d.querySelector('.rutaMenu').setAttribute('href',"#/categorias");
-    let cP =d.getElementById('contenidoPrincipal');
-    
+    d.querySelector('.rutaMenu').setAttribute('href', "#/categorias");
+
+    let cP = d.getElementById('contenidoPrincipal');
+
+    // Obtener las categorías
     res = await categoriasServices.listar();
     res.forEach(element => {
-      element.action = "<div class='btn-group'><a class='btn btn-warning btn-sm mr-1 rounded-circle btnEditarCategoria'  href='#/editCategoria' data-idCategoria='"+ element.id +"'> <i class='fas fa-pencil-alt'></i></a><a class='btn btn-danger btn-sm rounded-circle removeItem btnBorrarCategoria'href='#/delCategoria' data-idCategoria='"+ element.id +"'><i class='fas fa-trash'></i></a></div>";
-    });  
-     
-    cP.innerHTML =  htmlCategorias;
- 
+        element.action = `
+            <div class='btn-group'>
+                <a class='btn btn-warning btn-sm mr-1 rounded-circle btnEditarCategoria' href='#/editCategoria' data-idCategoria='${element.id}'>
+                    <i class='fas fa-pencil-alt'></i>
+                </a>
+                <a class='btn btn-danger btn-sm rounded-circle removeItem btnBorrarCategoria' href='#/delCategoria' data-idCategoria='${element.id}'>
+                    <i class='fas fa-trash'></i>
+                </a>
+            </div>
+        `;
+    });
+
+    // Renderizar el contenido principal y llenar la tabla
+    cP.innerHTML = htmlCategorias;
     llenarTabla(res);
 
+    // Asignar eventos al botón de agregar
     let btnAgregar = d.querySelector(".btnAgregarCategoria");
-   
-
-    btnAgregar.addEventListener("click", agregar);
-    for(let i=0 ; i< btnEditar.length ; i++){
-        btnEditar[i].addEventListener("click", editar);
-        btnBorrar[i].addEventListener("click", borrar);
-      }
-
+    if (btnAgregar) {
+        btnAgregar.addEventListener("click", agregar);
+    } else {
+        console.error("El botón de agregar no se encontró en el DOM.");
+    }
 }
 
-function enlazarEventos( oSettings){
+function enlazarEventos(oSettings) {
     let d = document;
     let btnEditar = d.querySelectorAll(".btnEditarCategoria");
     let btnBorrar = d.querySelectorAll(".btnBorrarCategoria");
 
-    for(let i=0 ; i< btnEditar.length ; i++){
+    for (let i = 0; i < btnEditar.length; i++) {
         btnEditar[i].addEventListener("click", editar);
         btnBorrar[i].addEventListener("click", borrar);
-    }    
-
+    }
 }
 
-function agregar(){
+function agregar() {
+    console.log("Función agregar llamada.");
     newRegister();
-
-}
-function editar(){
-   let id = this.getAttribute('data-idCategoria') ;
-   editRegister(id);
-    
 }
 
-async function borrar(){
-    let id = this.getAttribute('data-idCategoria') ;
-    let borrar=0;
-  await Swal.fire({
+function editar() {
+    let id = this.getAttribute('data-idCategoria');
+    editRegister(id);
+}
+
+async function borrar() {
+    let id = this.getAttribute('data-idCategoria');
+    let borrar = 0;
+
+    await Swal.fire({
         title: 'Está seguro que desea eliminar el registro?',
         showDenyButton: true,
         confirmButtonText: 'Si',
-        denyButtonText: `Cancelar`,
-  
+        denyButtonText: 'Cancelar',
         focusDeny: true
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
+    }).then((result) => {
         if (result.isConfirmed) {
-           borrar = 1;
+            borrar = 1;
         } else if (result.isDenied) {
-           borrar = 0 ;
-           Swal.fire('Se canceló la eliminación', '', 'info');
+            borrar = 0;
+            Swal.fire('Se canceló la eliminación', '', 'info');
         }
-      })
-      if (borrar === 1)
-            await categoriasServices.borrar(id); 
-      window.location.href = "#/categorias";  
+    });
+
+    if (borrar === 1) {
+        await categoriasServices.borrar(id);
+    }
+    window.location.href = "#/categorias";
 }
 
-function llenarTabla(res){ 
-   
-
+function llenarTabla(res) {
     new DataTable('#categoriasTable', {
-        responsive:true,
-        data : res,
+        responsive: true,
+        data: res,
         columns: [
-            { data: 'id' },    
+            { data: 'id' },
             { data: 'descripcion' },
-            { data: 'action', "orderable":false }
-            
+            { data: 'action', "orderable": false }
         ],
-        fnDrawCallback: function ( oSettings) {
-            enlazarEventos( oSettings); },
+        fnDrawCallback: function (oSettings) {
+            enlazarEventos(oSettings);
+        },
         deferRender: true,
-        retrive: true,
+        retrieve: true,
         processing: true,
         language: {
-            sProcessing:     "Procesando...",
-            sLengthMenu:     "Mostrar _MENU_ registros",
-            sZeroRecords:    "No se encontraron resultados",
-            sEmptyTable:     "Ningún dato disponible en esta tabla",
-            sInfo:           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
-            sInfoEmpty:      "Mostrando registros del 0 al 0 de un total de 0",
-            sInfoFiltered:   "(filtrado de un total de _MAX_ registros)",
-            sInfoPostFix:    "",
-            sSearch:         "Buscar:",
-            sUrl:            "",
-            sInfoThousands:  ",",
-            sLoadingRecords: "Cargando...",
+            sProcessing: "Procesando...",
+            sLengthMenu: "Mostrar _MENU_ registros",
+            sZeroRecords: "No se encontraron resultados",
+            sEmptyTable: "Ningún dato disponible en esta tabla",
+            sInfo: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
+            sInfoEmpty: "Mostrando registros del 0 al 0 de un total de 0",
+            sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+            sSearch: "Buscar:",
             oPaginate: {
-                sFirst:    "Primero",
-                sLast:     "Último",
-                sNext:     "Siguiente",
+                sFirst: "Primero",
+                sLast: "Último",
+                sNext: "Siguiente",
                 sPrevious: "Anterior"
             },
             oAria: {
-                sSortAscending:  ": Activar para ordenar la columna de manera ascendente",
+                sSortAscending: ": Activar para ordenar la columna de manera ascendente",
                 sSortDescending: ": Activar para ordenar la columna de manera descendente"
             }
-                            
-        }                           
+        }
     });
 
-} 
+    // Asignar eventos después de renderizar la tabla
+    let btnAgregar = document.querySelector(".btnAgregarCategoria");
+    if (btnAgregar) {
+        btnAgregar.addEventListener("click", agregar);
+    } else {
+        console.error("El botón de agregar no se encontró.");
+    }
+}
+
   

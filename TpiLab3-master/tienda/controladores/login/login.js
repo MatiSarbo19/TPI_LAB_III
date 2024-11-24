@@ -165,7 +165,6 @@ async function registrarUsuario(e) {
 
     // Validamos los datos ingresados
     const errores = validacionDatosRegistrar(
-        inputEmail.value.trim(),
         inputPassword.value.trim(),
         inputRepetirPass.value.trim()
     );
