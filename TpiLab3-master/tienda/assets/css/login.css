@@ -115,22 +115,27 @@ body.no-background::before {
 }
 
 
-/*Oculto la verificación de contraseña*/
-#reLoginPassword{
-    display: none;
-}
-
 .contenedor_login-register {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 90%;
-    color: rgba(66, 65, 65, 0.171);
+    flex-direction: row;
+    align-items: center; 
+    justify-content:space-between; 
+    width: 90%; 
+    color: rgba(66, 65, 65, 0.171); 
     height: 10%;
-    margin-top: 30px;
+    margin-top: 30px; 
 }
 
-.btnLogin1, .btnRegister1 {
+.contenedor_login-register a {
+    margin: 0 8px;
+}
+
+.contenedor_login-register:hover {
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.btnLogin1, .btnRegister1, .btnVolver1{
     text-align: center;
     font-size: small;
     padding: 10px;
@@ -141,7 +146,8 @@ body.no-background::before {
     align-self: left;
     letter-spacing: 0.1rem;
 }
-.btnLogin1:hover, .btnRegister1:hover{
+
+.btnLogin1:hover, .btnRegister1:hover,.btnVolver1:hover{
     cursor: pointer;
     box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
     -webkit-box-shadow: -1px 1px 20px -7px rgba(0,0,0,0.86);
@@ -156,14 +162,7 @@ body.no-background::before {
     height: 50px;
 }
 
-.contenedor_login-register a {
-    margin: 0 2px;
-}
 
-.contenedor_login-register:hover {
-    cursor: pointer;
-    color: whitesmoke;
-}
 
 
 @keyframes myAnim {

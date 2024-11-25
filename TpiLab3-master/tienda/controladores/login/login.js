@@ -10,41 +10,37 @@ const htmlLogin=
         <div id="caja-contenido">
             <div id="logo-iniciosesion"></div>
             <p id="inicio-registro">Iniciar sesión</p>
-            <form  class="formLogin" >
+            <form class="formLogin">
 
                 <div class="input-group">
-                    
                     <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail" autocomplete required>
-                    
                 </div>
 
                 <div class="input-group">
-                    
                     <input type="password" class="form-control" id="loginPassword" placeholder="Contraseña" name="loginPassword" autocomplete required>
-                
                 </div>
 
                 <div class="input-group">
-                    
-                    <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Contraseña" name="reLoginPassword"  required>
-                
+                    <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Contraseña" name="reLoginPassword" required>
                 </div>
-                            
+
                 <div class="row">
-                                    
                     <div class="col-4">
-                    <button type="submit"  id="iniciar-sesion" class="btnAmarillo">Login</button>
+                        <button type="submit" id="iniciar-sesion" class="btnAmarillo">Login</button>
                     </div>
-                        
                 </div>
             </form>
+
+            <!-- Contenedor con botones -->
             <div class="contenedor_login-register">
+                <a href="" class="btnVolver1">Volver</a>
                 <a href="#login" class="btnLogin1" data-emailUsuario="" data-idUsuario="">Iniciar Sesión</a>
                 <a href="#register" class="btnRegister1">Registrarse</a>
             </div>
         </div>
     </div>
 </div>
+
 `;
 /*2-Se deben definir 4 variables globales al módulo, una para el formulario html, y otras tres para los inputs de email, contraseña y 
 *   repetir contraseña
