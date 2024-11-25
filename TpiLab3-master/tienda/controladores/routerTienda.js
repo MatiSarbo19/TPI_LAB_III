@@ -1,6 +1,9 @@
 import { Carrusel } from "./carrusel/carrusel.js";
 import { listarProductos } from "./listarProductos/listarProductos.js";
 import { vistaProducto } from "./listarProductos/vistaProducto.js";
+import { Slider } from "./slider/slider.js"
+import { Cover } from "./cover/cover.js";
+import { Info } from "./info/info.js";
 import { getUsuarioAutenticado, login, mostrarUsuario, register, setUsuarioAutenticado } from "./login/login.js";
 
 export function RouterTienda(){
@@ -9,14 +12,17 @@ export function RouterTienda(){
     let hash = location.hash;
    
     if (hash === '#vistaProducto'){
-        hideBackground()
+        hideBackground();
+        clearLogin()
         vistaProducto();
 
     }else if (hash === '#login' ) {
-        showBackground()
-        login(); 
+        showBackground();
+        clearLogin()
+        login();
     }else if (hash === '#register' ) {      
-        showBackground()
+        showBackground();
+        clearLogin()
         register();    
 
     }else if (hash === '#logout' ) {      
@@ -25,8 +31,11 @@ export function RouterTienda(){
         location.replace("tienda.html");
 
     }else if (hash === '' ) {
-        hideBackground()
+        hideBackground();
+        Slider();
+        Cover();
         Carrusel();
+        Info();
         listarProductos();
     }    
     console.log (hash);
@@ -54,4 +63,17 @@ function hideBackground() {
 function showBackground() {
     const body = document.querySelector("body");
     body.classList.remove("no-background"); // Vuelve a mostrar el fondo
+}
+
+
+function clearLogin() {
+    const slider = document.querySelector(".slider");
+    const seccionCover = document.querySelector(".cover");
+    const barra_coutas = document.querySelector("#barra-cuotas");
+    const info_extra = document.querySelector(".info");
+    seccionCover.innerHTML = '';
+    slider.innerHTML = '';
+    barra_coutas.outerHTML = '';
+    info_extra.innerHTML = '';
+
 }

@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
+
+/*
 .categorias h1 {
     font-family: "Merriweather";
     font-weight: 800;
@@ -54,3 +56,69 @@
     background-color: black;
     color: white;
 }
+*/
+.categoria {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .productos {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping */
+    justify-content: space-between; /* Space out the items evenly */
+    padding: 20px;
+    align-items: flex-start; /* Align the items to the top */
+    overflow-x: auto; /* Allows scrolling if the content overflows */
+  }
+  
+  .item-producto {
+    width: 20%; /* Adjust this width based on how many items you want per row */
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Ensure padding and margins are accounted for */
+    text-align: center; /* Center the content of each item */
+  }
+  
+  .item-producto img {
+    width: 200px; /* Make the images responsive */
+    height: 200px; /* Ensure images keep their aspect ratio */
+    object-fit: contain; /* Ensure images are well-cropped */
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .producto_nombre {
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+  
+  .producto_precio {
+    font-size: 18px;
+    color: #0000008a;
+    margin-top: 5px;
+    font-weight: bold;
+    position: relative;
+  }
+  
+  .producto_precio::before {
+    content: "$ "; 
+    position: absolute;
+    left: -10px; /* Adjusted for better alignment */
+    top: 0; /* Aligns with the price text */
+  }
+  
+  .producto_enlace {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #BF3B3B;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .producto_enlace:hover {
+    background-color: #8C2B2B; /* Darker shade on hover */
+  }
+  
