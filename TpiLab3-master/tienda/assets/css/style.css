@@ -27,6 +27,7 @@ header{
 }
 header img{
     object-fit:contain;
+    filter: drop-shadow(1px 1px 6px black);
 }
 a{
     text-decoration: none;
