@@ -1,90 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
 
-/*
-.categorias h1 {
-    font-family: "Merriweather";
-    font-weight: 800;
-    font-size: 3rem;
-    padding: 2rem;
-    margin: 1rem 0 ;
-
+.categoria > h1 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #333;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.productos{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 1rem;
+.categoria > h1::after {
+  content: '';
+  display: block;
+  width: 90px;
+  height: 5px;
+  background: linear-gradient(45deg, #7d1d1d, #ee1717);
+  margin: 1.5rem auto 0 auto;
+  border-radius: 10px;
 }
 
-.item-producto{
-    flex: 0 0 20rem;
-    height: 30rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1rem;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}   
-
-.item-producto img{
-    display: block;
-    height: 60%;
-    width: 60%;
-    object-fit: contain;
-    margin: 0 auto;
-    
-}
-.producto_nombre{
-    padding: 0 0.5rem ;
-}
-
-.producto_precio{
-    margin: 1.5rem 0;
-    padding: 0 0.5rem ;
-    font-size: 2.5rem;
-    font-weight: bold;
-    color:rgb(65, 65, 65);
-}
-
-.producto_enlace{
-    padding: 1rem 0.5rem ;
-    border-radius: 1rem;
-    background-color: black;
-    color: white;
-}
-*/
-.categoria {
-    width: 100%;
-    margin: 0 auto;
-  }
   
   .productos {
-    display: flex;
-    flex-wrap: nowrap; /* Prevent wrapping */
-    justify-content: space-between; /* Space out the items evenly */
-    padding: 20px;
-    align-items: flex-start; /* Align the items to the top */
-    overflow-x: auto; /* Allows scrolling if the content overflows */
-  }
-  
-  .item-producto {
-    width: 20%; /* Adjust this width based on how many items you want per row */
-    margin-bottom: 20px;
-    box-sizing: border-box; /* Ensure padding and margins are accounted for */
-    text-align: center; /* Center the content of each item */
-  }
-  
-  .item-producto img {
-    width: 200px; /* Make the images responsive */
-    height: 200px; /* Ensure images keep their aspect ratio */
-    object-fit: contain; /* Ensure images are well-cropped */
-    padding: 5px;
-    text-align: center;
-  }
+    display: flex; 
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    padding: 0 1rem; 
+}
+
+.item-producto {
+  flex: 0 0 20rem;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.item-producto:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.item-producto img {
+    display: block; 
+    height: 60%; 
+    width: 60%; 
+    object-fit: contain; 
+    margin: 0 auto; 
+}
+
   
   .producto_nombre {
     font-size: 16px;
@@ -103,22 +76,29 @@
   .producto_precio::before {
     content: "$ "; 
     position: absolute;
-    left: -10px; /* Adjusted for better alignment */
-    top: 0; /* Aligns with the price text */
+    left: -10px; 
+    top: 0; 
   }
   
   .producto_enlace {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #BF3B3B;
+    margin: 0.8rem;
+    padding: 0.8rem 0.35rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: linear-gradient(45deg, #ff0000, #bb0101);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     color: white;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .producto_enlace:hover {
-    background-color: #8C2B2B; /* Darker shade on hover */
-  }
-  
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto_enlace:hover {
+    background: linear-gradient(45deg, #980c0c, #d20b0b);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+.categoria {
+    margin-bottom: 5rem; 
+}

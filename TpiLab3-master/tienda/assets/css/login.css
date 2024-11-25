@@ -41,7 +41,7 @@ body.no-background::before {
 }
 
 #caja-foto {
-    background-image: url("https://burst.shopifycdn.com/photos/fashion-model-poses.jpg?exif=0&iptc=0");
+    background-image: url("../../../img/plantilla/fashion-model-poses.jpg");
     background-size: cover;
 }
 #caja-contenido {

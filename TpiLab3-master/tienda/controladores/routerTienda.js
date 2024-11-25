@@ -3,7 +3,7 @@ import { listarProductos } from "./listarProductos/listarProductos.js";
 import { vistaProducto } from "./listarProductos/vistaProducto.js";
 import { Slider } from "./slider/slider.js"
 import { Cover } from "./cover/cover.js";
-import { Info } from "./info/info.js";
+import { Footer, Info } from "./info/info.js";
 import { getUsuarioAutenticado, login, mostrarUsuario, register, setUsuarioAutenticado } from "./login/login.js";
 
 export function RouterTienda(){
@@ -37,6 +37,7 @@ export function RouterTienda(){
         Carrusel();
         Info();
         listarProductos();
+        Footer()
     }    
     console.log (hash);
 }
