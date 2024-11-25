@@ -1,6 +1,4 @@
-const htmlCarrusel =
-
-`
+const htmlCarrusel = `
     <div class="slider-container">
         <div class="slide active">
             <img src="/img/slider/imagen1.png" alt="Imagen 1" style="width:100%; height:100%; object-fit:cover;">
@@ -11,49 +9,58 @@ const htmlCarrusel =
         <div class="slide">
             <img src="/img/slider/imagen3.png" alt="Imagen 3" style="width:100%; height:100%; object-fit:cover;">
         </div>
+        <div class="slide">
+            <img src="/img/slider/imagen4.png" alt="Imagen 4" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div class="slide">
+            <img src="/img/slider/imagen5.png" alt="Imagen 5" style="width:100%; height:100%; object-fit:cover;">
+        </div>
 
-        <button class="prev" ">&#10094;</button>
-        <button class="next" ">&#10095;</button>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
 
         <div class="dots">
-            <span class="dot active-dot" ></span>
-            <span class="dot" ></span>
-            <span class="dot" ></span>
+            <span class="dot active-dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
         </div>
     </div>
-`
-
-
+`;
 
 let slideIndex = 1;
-export async function Carrusel(){
-    let d = document
+
+export async function Carrusel() {
+    let d = document;
     let seccionCarrusel = d.querySelector(".carrusel");
     let seccionLogin = d.querySelector(".seccionLogin");
     
     seccionLogin.innerHTML = "";
     seccionCarrusel.innerHTML = htmlCarrusel;
+    
     let buttonPrev = seccionCarrusel.querySelector(".prev");
     let buttonNext = seccionCarrusel.querySelector(".next");
-    let dot1 = seccionCarrusel.querySelector(".dot:nth-child(1)");
-    let dot2 = seccionCarrusel.querySelector(".dot:nth-child(2)");
-    let dot3 = seccionCarrusel.querySelector(".dot:nth-child(3)");
-
+    
+    // Actualiza los dots de navegación
+    let dots = seccionCarrusel.querySelectorAll(".dot");
+    
     buttonPrev.addEventListener('click', nextSlide);
     buttonNext.addEventListener('click', prevSlide);
 
-    dot1.addEventListener('click', () => currentSlide(1));
-    dot2.addEventListener('click', () => currentSlide(2));
-    dot3.addEventListener('click', () => currentSlide(3));
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => currentSlide(index + 1));
+    });
 
     showSlides(slideIndex);
 }
-function nextSlide(){
-    changeSlide(1);
+
+function nextSlide() {
+    changeSlide(-1);
 }
 
-function prevSlide(){
-    changeSlide(-1);
+function prevSlide() {
+    changeSlide(1);
 }
 
 function changeSlide(n) {
