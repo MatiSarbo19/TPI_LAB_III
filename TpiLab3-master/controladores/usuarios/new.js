@@ -4,264 +4,276 @@ import { usuariosServices } from "/servicios/usuarios-servicios.js";
 const htmlAmUsuarios = `
 <div class="card card-dark card-outline">
 
-	<form  class="needs-validation frmAmUsuario"  enctype="multipart/form-data">
-	
-		<div class="card-header">
-               
-			<div class="col-md-8 offset-md-2">	
-               
-				<!--=====================================
+    <form class="needs-validation frmAmUsuario" enctype="multipart/form-data">
+
+        <div class="card-header">
+
+            <div class="col-md-8 offset-md-2">
+
+                <!--=====================================
                 Nombre
                 ======================================-->
-				
-				<div class="form-group mt-5">
-					
-					<label>Nombre</label>
 
-					<input 
-					type="text" 
-					class="form-control"
-					pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,}"
-					onchange="validateJS(event,'text')"
-					name="nombre"
+                <div class="form-group mt-5">
+
+                    <label>Nombre</label>
+
+                    <input 
+                    type="text" 
+                    class="form-control"
+                    pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ ]{1,}"
+                    onchange="validateJS(event,'text')"
+                    name="nombre"
                     id="usuarioNombre"
-					required>
+                    required>
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>
+                </div>
 
-				<!--=====================================
+                <!--=====================================
                 Apellido
                 ======================================-->
 
-				<div class="form-group mt-2">
-					
-					<label>Apellido</label>
+                <div class="form-group mt-2">
 
-					<input 
-					type="text" 
-					class="form-control"
-					onchange="validateJS(event,'text')"
-					name="apellido"
+                    <label>Apellido</label>
+
+                    <input 
+                    type="text" 
+                    class="form-control"
+                    onchange="validateJS(event,'text')"
+                    name="apellido"
                     id="usuarioApellido"
-					required>
+                    required>
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>
+                </div>
 
-				<!--=====================================
+                <!--=====================================
                 Correo electrónico
                 ======================================-->
 
-				<div class="form-group mt-2">
-					
-					<label>Email</label>
+                <div class="form-group mt-2">
 
-					<input 
-					type="email" 
-					class="form-control"
-					onchange="validateRepeat(event,'email')"
-					name="email"
+                    <label>Email</label>
+
+                    <input 
+                    type="email" 
+                    class="form-control"
+                    onchange="validateRepeat(event,'email')"
+                    name="email"
                     id="usuarioEmail"
-					required>
+                    required>
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>
+                </div>
 
-
-				<!--=====================================
+                <!--=====================================
                 Contraseña
                 ======================================-->
 
-				<div class="form-group mt-2">
-					
-					<label>Password</label>
+                <div class="form-group mt-2">
 
-					<input 
-					type="password" 
-					class="form-control"
-					onchange="validateJS(event,'pass')"
-					name="password"
+                    <label>Password</label>
+
+                    <input 
+                    type="password" 
+                    class="form-control"
+                    onchange="validateJS(event,'pass')"
+                    name="password"
                     id="usuarioPassword" 
-					required
-					>
+                    required
+                    >
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>
+                </div>
 
-
-				<!--=====================================
+                <!--=====================================
                 Foto
                 ======================================-->
 
-				<div class="form-group mt-2">
-					
-					<label>Foto</label>
-			
-					<label for="customFile" class="d-flex justify-content-center">
-						
-						<figure class="text-center py-3">
-							
-							<img src="../../img/usuarios/default/anonymous.png" class="img-fluid rounded-circle changePicture" style="width:150px">
+                <div class="form-group mt-2">
 
-						</figure>
+                    <label>Foto</label>
 
-					</label>
+                    <label for="customFile" class="d-flex justify-content-center">
 
-					<div class="custom-file">
-						
-						<input 
-						type="file" 
-						id="customFile" 
-						class="custom-file-input"
-						accept="image/*"
-						onchange="validateImageJS(event,'changePicture')"
-						name="picture"
-                       	>
+                        <figure class="text-center py-3">
 
-						<div class="valid-feedback">Valid.</div>
-            			<div class="invalid-feedback">Please fill out this field.</div>
+                            <img src="../../img/usuarios/default/anonymous.png" class="img-fluid rounded-circle changePicture" style="width:150px">
 
-						<label for="customFile" class="custom-file-label">Elegir imágen</label>
+                        </figure>
 
-					</div>
+                    </label>
 
-				</div>
+                    <div class="custom-file">
 
-				<!--=====================================
+                        <input 
+                        type="file" 
+                        id="customFile" 
+                        class="custom-file-input"
+                        accept="image/*"
+                        onchange="validateImageJS(event,'changePicture')"
+                        name="picture"
+                        >
+
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+
+                        <label for="customFile" class="custom-file-label">Elegir imágen</label>
+
+                    </div>
+
+                </div>
+
+                <!--=====================================
                 País
                 ======================================-->
 
-             	<div class="form-group mt-2">
-					
-					<label>País</label>
+                <div class="form-group mt-2">
 
-					
+                    <label>País</label>
 
-					<select class="form-control select2 changeCountry" name="pais" id="usuarioPais" required>
-						
-						<option value>Seleccionar país</option>
+                    <select class="form-control select2 changeCountry" name="pais" id="usuarioPais" required>
+
+                        <option value>Seleccionar país</option>
                         <option value="Argentina">Argentina</option>
                         <option value="Brasil">Brasil</option>
                         <option value="Bolivia">Bolivia</option>
                         <option value="Chile">Chile</option>
                         <option value="Paraguay">Paraguay</option>
                         <option value="Perú">Perú</option>
-                        <option value="Uruguay">Chile</option>
+                        <option value="Uruguay">Uruguay</option>
 
-					</select>
+                    </select>
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>  
+                </div>  
 
-				<!--=====================================
+                <!--=====================================
                 Ciudad
                 ======================================-->
 
                 <div class="form-group mt-2">
-					
-					<label>Ciudad</label>
 
-					<input 
-					type="text" 
-					class="form-control"
-					onchange="validateJS(event,'text')"
-					name="ciudad"
+                    <label>Ciudad</label>
+
+                    <input 
+                    type="text" 
+                    class="form-control"
+                    onchange="validateJS(event,'text')"
+                    name="ciudad"
                     id="usuarioCiudad"
-					required>
+                    required>
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>
+                </div>
 
-				<!--=====================================
+                <!--=====================================
                 Dirección
                 ======================================-->
 
                 <div class="form-group mt-2">
-					
-					<label>Dirección</label>
 
-					<input 
-					type="text" 
-					class="form-control"
-					onchange="validateJS(event,'regex')"
-					name="direccion"
+                    <label>Dirección</label>
+
+                    <input 
+                    type="text" 
+                    class="form-control"
+                    onchange="validateJS(event,'regex')"
+                    name="direccion"
                     id="usuarioDireccion"
-					required>
+                    required>
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>
+                </div>
 
-				<!--=====================================
+                <!--=====================================
                 Teléfono
                 ======================================-->
 
-                <div class="form-group mt-2 mb-5">
-					
-					<label>Teléfono</label>
+                <div class="form-group mt-2">
 
-					<div class="input-group">
+                    <label>Teléfono</label>
 
-						<div class="input-group-append">
-							<span class="input-group-text dialCode">+54</span>
-						</div>
+                    <div class="input-group">
 
-						<input 
-						type="text" 
-						class="form-control"
-						onchange="validateJS(event,'phone')"
-						name="telefono"
+                        <div class="input-group-append">
+                            <span class="input-group-text dialCode">+54</span>
+                        </div>
+
+                        <input 
+                        type="text" 
+                        class="form-control"
+                        onchange="validateJS(event,'phone')"
+                        name="telefono"
                         id="usuarioTelefono"
-						required>
+                        required>
 
-					</div>
+                    </div>
 
-					<div class="valid-feedback">Valid.</div>
-            		<div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-				</div>
+                </div>
 
-			
-			</div>
-		
+                <!--=====================================
+                Rol (Cliente o Administrador)
+                ======================================-->
 
-		</div>
+                <div class="form-group mt-2">
 
-		<div class="card-footer">
-			
-			<div class="col-md-8 offset-md-2">
-	
-				<div class="form-group mt-3">
+                    <label>Rol</label>
 
-					<a href="#/usuarios" class="btn btn-light border text-left">Cancelar</a>
-					
-					<button type="submit" class="btn bg-dark float-right">Guardar</button>
+                    <select class="form-control" name="rol" id="usuarioRol" required>
+                        <option value>Seleccionar rol</option>
+                        <option value="Cliente">Cliente</option>
+                        <option value="Administrador">Administrador</option>
+                    </select>
 
-				</div>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
 
-			</div>
+                </div>
 
-		</div>
+            </div>
 
+        </div>
 
-	</form>
+        <div class="card-footer">
 
+            <div class="col-md-8 offset-md-2">
 
-</div> `;
+                <div class="form-group mt-3">
+
+                    <a href="#/usuarios" class="btn btn-light border text-left">Cancelar</a>
+
+                    <button type="submit" class="btn bg-dark float-right">Guardar</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+ `;
 var formulario='';
 var txtNombre='';
 var txtApellido='';
@@ -272,6 +284,7 @@ var selPais='';
 var txtCiudad='';
 var txtDireccion='';
 var txtTelefono='';
+var selRol = '';
 var idUsuario;
 
 export async function newRegister(){
@@ -308,6 +321,7 @@ export async function editRegister(id){
     txtCiudad.value= usuario.ciudad;
     txtDireccion.value= usuario.direccion;
     txtTelefono.value= usuario.telefono;
+	selRol.value = usuario.role;
 }
 
 function crearFormulario(){
@@ -332,7 +346,7 @@ function crearFormulario(){
     txtCiudad= d.getElementById('usuarioCiudad');
     txtDireccion= d.getElementById('usuarioDireccion');
     txtTelefono= d.getElementById('usuarioTelefono');
-
+	selRol = d.getElementById('usuarioRol')
 }
 
 function guardar(e) {
@@ -341,7 +355,7 @@ function guardar(e) {
    
     var pais = selPais.options[selPais.selectedIndex];
     usuariosServices.crear(txtApellido.value, txtNombre.value, txtCorreo.value, txtPass.value, fileAvatar.src , 
-        pais.value, txtCiudad.value, txtDireccion.value, txtTelefono.value)
+        pais.value, txtCiudad.value, txtDireccion.value, txtTelefono.value, selRol.value)
         .then(respuesta => {
 
             formulario.reset();
@@ -358,7 +372,7 @@ function modificar(e) {
    
     var pais = selPais.options[selPais.selectedIndex];
     usuariosServices.editar(idUsuario, txtApellido.value, txtNombre.value, txtCorreo.value, txtPass.value, fileAvatar.src , 
-        pais.value, txtCiudad.value, txtDireccion.value, txtTelefono.value)
+        pais.value, txtCiudad.value, txtDireccion.value, txtTelefono.value, selRol.value)
         .then(respuesta => {
 
             formulario.reset();
