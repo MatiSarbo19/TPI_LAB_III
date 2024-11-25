@@ -26,7 +26,6 @@ header{
     background-image: linear-gradient(to left, transparent  35%, #BF3B3B);
 }
 header img{
-    padding: 1rem;
     object-fit:contain;
 }
 a{
