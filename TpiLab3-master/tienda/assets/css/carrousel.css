@@ -62,3 +62,86 @@
     background-color: #717171;
 }
 
+
+.conteCarrousel {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    overflow: hidden; 
+    display: flex;
+}
+
+
+.itemCarrousel {
+    position: relative;
+    width: 100%;
+    flex-shrink: 0; 
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; 
+}
+
+
+.itemCarrouselTarjeta img {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
+    display: block;
+}
+
+.itemCarrousel.active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.itemCarrousel:not(.active) {
+    opacity: 0; 
+    transform: translateX(100%); 
+}
+
+.itemCarrouselArrows {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.itemCarrouselArrows a {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.itemCarrouselArrows a:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.itemCarrouselArrows a:first-child {
+    left: 10px; 
+}
+
+.itemCarrouselArrows a:last-child {
+    right: 10px; 
+}
+
+.conteCarrousel {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    overflow: hidden; 
+    display: flex; 
+    scroll-snap-type: x mandatory; 
+}
+
+.itemCarrousel {
+    scroll-snap-align: center; 
+    flex: 0 0 100%; 
+}
