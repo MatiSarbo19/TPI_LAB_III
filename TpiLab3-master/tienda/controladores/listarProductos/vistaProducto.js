@@ -15,8 +15,12 @@ export async function vistaProducto(){
     */
    
     const carrusel = document.querySelector('.carrusel');
+    const slider = document.querySelector(".slider");
     const seccionProducto = document.querySelector('.seccionProductos');
     const seccionLogin = document.querySelector('.seccionLogin');
+    const seccionCover = document.querySelector(".cover");
+    seccionCover.innerHTML = '';
+    slider.innerHTML = '';
     carrusel.innerHTML = '';
     seccionProducto.innerHTML = '';
     seccionLogin.innerHTML = '';

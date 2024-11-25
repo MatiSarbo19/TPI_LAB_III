@@ -17,13 +17,17 @@ body{
 header{
     display: flex;
     justify-content: space-between;
-    background-color: #F2AF5C;
-    min-height: 10vh;
+    background-color: #8C2B2B;
+    min-height: 5vh;
     padding: 1rem;
-    box-shadow: 1px 1px 10px ;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background-image: linear-gradient(to left, transparent  35%, #BF3B3B);
 }
 header img{
     object-fit:contain;
+    filter: drop-shadow(1px 1px 6px black);
 }
 a{
     text-decoration: none;
@@ -55,7 +59,7 @@ footer{
     padding: 2rem;
     border-top: 1px solid rgba(128, 128, 128, 0.5);
     background-color: black;
-    color: white;
+    color: rgb(255, 255, 255);
     height: auto;
     text-align: right;
 }
@@ -64,4 +68,25 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+}
+
+
+#cover-tienda {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#barra-cuotas {
+    background-color: black;
+    padding: 5px;
+    padding-bottom: 9px;
+}
+  
+#barra-cuotas p {
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 1.35rem;
 }

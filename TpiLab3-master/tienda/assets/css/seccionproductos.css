@@ -1,0 +1,16 @@
+.seccionProductos {
+    padding: 0;
+    padding-bottom: 2%;
+}
+.seccionProductos h1 {
+    font-size: 2.5rem;
+    font-weight: normal;
+    padding-left: 2%;
+}
+
+.categoria {
+    padding-top: 2%;
+}
+.categoria:nth-child(even) {
+    background-color: #ececec;
+}

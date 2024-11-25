@@ -1,0 +1,55 @@
+.custom-slider {
+    position: relative;
+    width: 100vw; 
+    max-width: 100%; 
+    overflow: hidden;
+    background-color: #A68568;;
+    background-image: linear-gradient(to left,#d6ab85, transparent  35%, #d6ab85);
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 6px black;
+}
+
+.custom-slide {
+    display: none; 
+    text-align: center;
+    padding: 20px;
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out; 
+}
+
+.custom-slide.active {
+    display: block; 
+    opacity: 1; 
+}
+
+button.custom-prev,
+button.custom-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    color: #fff;
+    border: none;
+    padding: 10px;
+    z-index: 2;
+    font-size: 2rem;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 1px 1px 6px black;
+}
+
+button.custom-prev {
+    left: 35%; 
+}
+
+button.custom-next {
+    right: 35%; 
+}
+
+button.custom-prev:hover,
+button.custom-next:hover {
+    cursor: pointer; 
+}
