@@ -30,37 +30,54 @@ const htmlCarrusel = `
 `;
 
 let slideIndex = 1;
+let autoSlideInterval; 
 
 export async function Carrusel() {
     let d = document;
     let seccionCarrusel = d.querySelector(".carrusel");
     let seccionLogin = d.querySelector(".seccionLogin");
-    
+
     seccionLogin.innerHTML = "";
     seccionCarrusel.innerHTML = htmlCarrusel;
-    
+
     let buttonPrev = seccionCarrusel.querySelector(".prev");
     let buttonNext = seccionCarrusel.querySelector(".next");
+
     
-    // Actualiza los dots de navegación
     let dots = seccionCarrusel.querySelectorAll(".dot");
-    
-    buttonPrev.addEventListener('click', nextSlide);
-    buttonNext.addEventListener('click', prevSlide);
+
+    buttonPrev.addEventListener('click', () => {
+        clearInterval(autoSlideInterval); 
+        prevSlide();
+        startAutoSlide(); 
+    });
+
+    buttonNext.addEventListener('click', () => {
+        clearInterval(autoSlideInterval);
+        nextSlide();
+        startAutoSlide();
+    });
 
     dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => currentSlide(index + 1));
+        dot.addEventListener('click', () => {
+            clearInterval(autoSlideInterval);
+            currentSlide(index + 1);
+            startAutoSlide();
+        });
     });
 
     showSlides(slideIndex);
+
+    
+    startAutoSlide();
 }
 
 function nextSlide() {
-    changeSlide(-1);
+    changeSlide(1);
 }
 
 function prevSlide() {
-    changeSlide(1);
+    changeSlide(-1);
 }
 
 function changeSlide(n) {
@@ -74,19 +91,27 @@ function currentSlide(n) {
 function showSlides(n) {
     const slides = document.getElementsByClassName("slide");
     const dots = document.getElementsByClassName("dot");
-    
+
     if (n > slides.length) {
         slideIndex = 1;
     }
     if (n < 1) {
         slideIndex = slides.length;
     }
-    
+
     for (let i = 0; i < slides.length; i++) {
         slides[i].classList.remove("active");
         dots[i].classList.remove("active-dot");
     }
-    
-    slides[slideIndex-1].classList.add("active");
-    dots[slideIndex-1].classList.add("active-dot");
+
+    slides[slideIndex - 1].classList.add("active");
+    dots[slideIndex - 1].classList.add("active-dot");
 }
+
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        prevSlide(); 
+    }, 5000); 
+}
+

@@ -2,11 +2,6 @@ import { categoriasServices } from "../../../servicios/categorias-servicios.js";
 import { productosServices } from "../../../servicios/productos-servicios.js";
 
 function htmlCategoria(id, categoria){
-    /*ESTA FUNCION RECIBE DOS PARAMETROS ID Y CATEGORIA*/
-    /*EN ESTA SE GENERA UNA CADENA DE CARACTERES CON EL CODIGO HTML CORRESPONDIENTE A LA CATEGORIA (ESTA EN ASSETS/MODULOS/listarProducto.html)*/
-    /*SE DEBERÁ CONCATENAR PARA INCORPORAR EL id DE LA CATEGORIA AL ATRIBUTO data-idCategoria  */
-    /*Y ADEMAS REEMPLAZAR EL TEXTO Nombre de Categoría POR EL VALOR QUE LLEGA AL PARAMETRO CATEGORIA DE LA FUNCION*/
-    /*POR ULTIMO, LA FUNCION DEVOLVERA LA CADENA RESULTANTE*/   
     return `
         <div class="categoria" data-idCategoria="${id}">
             <h1 class="categoria">${categoria}</h1>
@@ -19,16 +14,6 @@ function htmlCategoria(id, categoria){
 }
 
 function htmlItemProducto(id, imagen, nombre, precio){
-    /**1- ESTA FUNCION RECIBE COMO PARAMETRO los siguiente datos id, imagen, nombre y precio del producto */
-    /**2- A ESTOS PARAMETROS LOS CONCATENA DENTRO DEL CODIGO CORRESPONDIENTE AL COMPONENTE itemProducto ( ASSETS/MODULOS/itemProducto.html)*/
-    /**3- POR ULTIMO DEVUELVE LA CADENA RESULTANTE. */
-    /**4- SE RECUERDA QUE PARA PODER HACER LA INTERPOLACION DE CADENAS ${NOMBRE_VARIABLE} EL TEXTO DEBE ESTAR ENTRE LAS COMILLAS ` `. 
-     *  
-     *  ejemplo
-     *   let titulo = 'Señora';  
-     *   let cadena = `Hola, ${titulo} Claudia  en que podemos ayudarla`;
-     *   
-    */
     return `
     <div class="item-producto">
         <img src="${imagen}">
