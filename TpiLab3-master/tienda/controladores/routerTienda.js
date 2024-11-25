@@ -71,9 +71,10 @@ function clearLogin() {
     const seccionCover = document.querySelector(".cover");
     const barra_coutas = document.querySelector("#barra-cuotas");
     const info_extra = document.querySelector(".info");
-    seccionCover.innerHTML = '';
-    slider.innerHTML = '';
-    barra_coutas.outerHTML = '';
-    info_extra.innerHTML = '';
-
+    const footer = document.querySelector('.footer')
+    seccionCover.style.display = 'none';
+    slider.style.display = 'none';
+    barra_coutas.style.display = 'none';
+    info_extra.style.display = 'none';
+    footer.style.display = 'none';
 }

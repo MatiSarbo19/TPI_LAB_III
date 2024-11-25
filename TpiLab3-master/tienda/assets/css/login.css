@@ -165,11 +165,6 @@ body.no-background::before {
     color: whitesmoke;
 }
 
-footer {
-    border-top: none;
-    background-color: transparent;
-    font-size: 1rem;
-}
 
 @keyframes myAnim {
 	0% {
