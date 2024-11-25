@@ -23,7 +23,6 @@ header{
     box-shadow: 1px 1px 10px ;
 }
 header img{
-    padding: 1rem;
     object-fit:contain;
 }
 a{

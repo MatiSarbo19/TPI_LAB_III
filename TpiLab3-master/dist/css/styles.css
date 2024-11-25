@@ -35,6 +35,7 @@
 
 .pie-pag{
     text-align: end;
+    color:rgb(26, 24, 24); ;
 }
 
 .content-wrapper{
@@ -55,28 +56,29 @@
 
 .card{
     background-color: #A68568 ;
+    margin-bottom: 0;
 }
 
 
 .card .table {
-    border-collapse: collapse; /* Colapsa los bordes para que no se dupliquen */
-    width: 100%; /* La tabla ocupará todo el ancho disponible */
-    border: 1px solid black; /* Borde negro alrededor de la tabla */
+    border-collapse: collapse;
+    width: 100%; 
+    border: 1px solid black; 
 }
 
 .card .table th, .card .table td {
-    border: 1px solid black; /* Borde negro en las celdas */
-    padding: 8px; /* Espaciado interno */
-    text-align: left; /* Alineación del texto en las celdas */
+    border: 1px solid black; 
+    padding: 8px; 
+    text-align: left; 
 }
 
 .card .table tr {
-    border-bottom: 1px solid black; /* Borde inferior en las filas */
+    border-bottom: 1px solid black; 
 }
 
 .card .form-control {
     background-color: #A68568;
-    border: black 1px solid;                
+    border: black 1px solid;
 }
 
 .pagination .previous .page-link {
@@ -94,12 +96,26 @@
     border-radius: 8px; 
     color:rgb(26, 24, 24) ;
 }
+.page-link {
+    background-color: #F2AF5C;
+    border-color: #F2AF5C;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+}
+
+.page-link:hover{
+    background-color: #ed9b35;
+    border: none;
+    color: black;
+}
 
 .pagination .page-item.active .page-link {
     background-color: #F2AF5C; 
     border-color: #F2AF5C;
     border-radius: 8px;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);     
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    color: black;     
 }
 
 .btnAgregarUsuario{
@@ -198,6 +214,5 @@ input[type="checkbox"].ckboxDespachado:checked::after {
 
 button.btn:hover {
     background-color: #f4a23d !important;
-    border: none!important;
-    
+    border: none!important;  
 }
