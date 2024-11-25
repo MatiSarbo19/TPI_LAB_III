@@ -36,30 +36,48 @@ export function setLogin() {
 }
 
 async function usuarioExiste() {
-    let existeUsuario;
-    let usuarioActivo;
-    let usuarioFoto;
-    let usuarioId;
-    const spinner = document.querySelector('#spinner');
+    const spinner = document.querySelector('#spinner'); // No usado en este código
+    let existeUsuario = false;
+    let usuarioActivo = '';
+    let usuarioFoto = '';
+    let usuarioId = '';
 
-    await usuariosServices.listar()
-        .then(respuesta => {
-            respuesta.forEach(usuario => {
-                if (usuario.correo === inputEmail.value && usuario.password === inputPassword.value) {
-                    usuarioId = usuario.id;
-                    usuarioActivo = usuario.nombre + ' ' + usuario.apellido;
-                    usuarioFoto = usuario.avatar;
-                    return existeUsuario = true;
-                } else {
-                    return;
-                }
-            });
-        })
-        .catch(error => console.log(error));
+    try {
+        // Llamar al servicio para listar usuarios
+        const usuarios = await usuariosServices.listar();
 
-    if (!existeUsuario) {
-        mostrarMensaje('Email o contraseña incorrecto, intenta nuevamente');
-    } else {
+        // Buscar si existe el usuario con correo, contraseña y rol de administrador
+        const usuarioValido = usuarios.find(usuario => 
+            usuario.role === 'Administrador' && 
+            usuario.correo === inputEmail.value && 
+            usuario.password === inputPassword.value
+        );
+
+        if (usuarioValido) {
+            // Si el usuario válido es encontrado
+            existeUsuario = true;
+            usuarioId = usuarioValido.id;
+            usuarioActivo = `${usuarioValido.nombre} ${usuarioValido.apellido}`;
+            usuarioFoto = usuarioValido.avatar;
+        } else {
+            // Verificar si el problema es el rol o las credenciales
+            const usuarioExiste = usuarios.find(usuario =>
+                usuario.correo === inputEmail.value && usuario.password === inputPassword.value
+            );
+
+            if (usuarioExiste) {
+                mostrarMensaje('Necesitas ser Administrador para Ingresar');
+            } else {
+                mostrarMensaje('Email o contraseña incorrecto, intenta nuevamente');
+            }
+        }
+    } catch (error) {
+        console.log('Error al listar usuarios:', error);
+        mostrarMensaje('Hubo un error al validar los datos, intenta más tarde.');
+    }
+
+    // Si el usuario es válido y administrador
+    if (existeUsuario) {
         // Ocultar login
         frmLogin.outerHTML = '';
         document.getElementById("sitio").classList.remove('d-none');

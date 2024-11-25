@@ -191,7 +191,7 @@ async function registrarUsuario(e) {
             null,
             null,
             null,
-            'cliente'
+            'Cliente'
         );
         mostrarMensaje('Email registrado exitosamente');
         window.location.href = "#login"; // Redirigimos al usuario
