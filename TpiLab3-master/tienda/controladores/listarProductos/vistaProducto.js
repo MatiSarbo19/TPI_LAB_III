@@ -149,6 +149,7 @@ async function registrarCompra(){
      const nameProducto = document.querySelector('#nameProducto').innerText;
      const cantidad = parseInt(document.querySelector('#cantidadProducto').value);
      const fecha = new Date().toISOString(); 
+     const despachado = false
  
      
      await ventasServices.crear(
@@ -157,7 +158,8 @@ async function registrarCompra(){
         idProducto,
         nameProducto,
         cantidad,
-        fecha
+        fecha,
+        despachado
     );
  
      location.replace("tienda.html");

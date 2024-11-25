@@ -14,7 +14,7 @@ const htmlHome =
             <div class="icon">
                 <i class="ion ion-bag"></i>
             </div>
-            <a href="#/ventas" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#/ventas" class="small-box-footer">Visitar <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -29,7 +29,7 @@ const htmlHome =
             <div class="icon">
             <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#/ventas" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#/ventas" class="small-box-footer">Visitar <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -44,7 +44,7 @@ const htmlHome =
             <div class="icon">
             <i class="ion ion-person-add"></i>
             </div>
-            <a href="#/usuarios" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#/usuarios" class="small-box-footer">Visitar <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -59,7 +59,7 @@ const htmlHome =
             <div class="icon">
             <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#/productos" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#/productos" class="small-box-footer">Visitar <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -68,9 +68,9 @@ const htmlHome =
 export async function Home(){
     let d = document
     let res='';
-    d.querySelector('.contenidoTitulo').innerHTML = 'Home';
+    d.querySelector('.contenidoTitulo').innerHTML = 'Inicio';
     d.querySelector('.contenidoTituloSec').innerHTML = '';
-    d.querySelector('.rutaMenu').innerHTML = "Home";
+    d.querySelector('.rutaMenu').innerHTML = "Inicio";
     d.querySelector('.rutaMenu').setAttribute('href',"#/home");
     let cP =d.getElementById('contenidoPrincipal');
            
