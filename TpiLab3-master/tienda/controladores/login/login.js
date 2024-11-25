@@ -2,8 +2,7 @@
 import { usuariosServices } from "../../../servicios/usuarios-servicios.js";
 
 /**1- Se debe asignar a la siguiente constante todo el código correspondiente al componente de login (/asset/modulos/login.html)  */
-const htmlLogin=
-`
+const htmlLogin = `
 <div class="contenedorLogin">
     <div class="cajaLogin">
         <div id="caja-foto"></div>
@@ -13,15 +12,21 @@ const htmlLogin=
             <form class="formLogin">
 
                 <div class="input-group">
-                    <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail" autocomplete required>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="Email" name="loginEmail" autocomplete="on" required>
                 </div>
 
-                <div class="input-group">
-                    <input type="password" class="form-control" id="loginPassword" placeholder="Contraseña" name="loginPassword" autocomplete required>
+                <div class="input-group password-container">
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Contraseña" name="loginPassword" autocomplete="off" required>
+                    <button type="button" class="toggle-password" data-input="loginPassword">
+                        <img id="eyeIcon1" src="https://img.icons8.com/ios-filled/50/000000/visible.png" alt="Mostrar contraseña">
+                    </button>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group password-container pass2">
                     <input type="password" class="form-control" id="reLoginPassword" placeholder="Repetir Contraseña" name="reLoginPassword" required>
+                    <button type="button" class="toggle-password" data-input="reLoginPassword">
+                        <img id="eyeIcon2" src="https://img.icons8.com/ios-filled/50/000000/visible.png" alt="Mostrar contraseña">
+                    </button>
                 </div>
 
                 <div class="row">
@@ -98,11 +103,13 @@ function crearFormulario(registrar){
     let tituloLogin = document.querySelector('#inicio-registro');
     let botonRegistro = document.querySelector('.btnRegister1');
     let botonInicioSesion = document.querySelector('.btnLogin1');
-    let botonSubmit = document.getElementById("iniciar-sesion")
+    let botonSubmit = document.getElementById("iniciar-sesion");
+    let pass2 = document.querySelector('.pass2')
 
     if (!registrar){
         tituloLogin.textContent = "Iniciar sesión";
         inputRepetirPass.value = '';
+        pass2.style.display = 'none';
         inputRepetirPass.style.display = 'none';
         inputRepetirPass.removeAttribute('required');
         botonRegistro.style.display = "block";
@@ -110,6 +117,7 @@ function crearFormulario(registrar){
     }
     else{
         tituloLogin.textContent = "Registrarse";
+        pass2.style.display = 'block';
         inputRepetirPass.style.display = 'block';
         inputRepetirPass.setAttribute('required', 'true');
         botonRegistro.style.display = "none";
@@ -323,3 +331,30 @@ async function emailExiste(email) {
     }
     return false; // El email no está registrado
 }
+
+// Espera a que el DOM esté completamente cargado antes de ejecutar el script
+document.addEventListener("DOMContentLoaded", function () {
+    // Escuchar el evento click en el documento entero
+    document.addEventListener("click", function (event) {
+        // Verificar si el clic ocurrió dentro de un botón con la clase "toggle-password"
+        if (event.target.closest('.toggle-password')) {
+            // Si el clic es en un botón toggle-password, obtener el botón
+            const button = event.target.closest('.toggle-password');
+            const inputId = button.getAttribute("data-input"); // ID del input asociado
+            const passwordInput = document.getElementById(inputId); // Input de contraseña
+            const eyeIcon = button.querySelector("img"); // Icono del ojo
+
+            // Alternar entre mostrar y ocultar la contraseña
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.src = "https://img.icons8.com/ios-filled/50/000000/invisible.png";
+                eyeIcon.alt = "Ocultar contraseña";
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.src = "https://img.icons8.com/ios-filled/50/000000/visible.png";
+                eyeIcon.alt = "Mostrar contraseña";
+            }
+        }
+    });
+});
+

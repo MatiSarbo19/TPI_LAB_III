@@ -125,4 +125,3 @@ function logout() {
     setUsuarioAutenticado(false);
     window.location.replace("index(admin).html");
 }
-
