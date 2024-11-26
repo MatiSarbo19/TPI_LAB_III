@@ -1,4 +1,4 @@
-import { Carrusel } from "./carrusel/carrusel.js";
+import { Carrusel,stopCarrusel } from "./carrusel/carrusel.js";
 import { listarProductos } from "./listarProductos/listarProductos.js";
 import { vistaProducto } from "./listarProductos/vistaProducto.js";
 import { Slider } from "./slider/slider.js"
@@ -6,42 +6,44 @@ import { Cover } from "./cover/cover.js";
 import { Footer, Info } from "./info/info.js";
 import { getUsuarioAutenticado, login, mostrarUsuario, register, setUsuarioAutenticado } from "./login/login.js";
 
-export function RouterTienda(){
+export function RouterTienda() {
     let session = getUsuarioAutenticado();
     setSession(session); 
     let hash = location.hash;
-   
-    if (hash === '#vistaProducto'){
+
+    // Lógica para apagar el carrusel cuando no se muestra
+    if (hash !== '' && hash !== '#logout') {
+        stopCarrusel();
+    }
+
+    if (hash === '#vistaProducto') {
         clearLogin();
         vistaProducto();
-
-    }else if (hash === '#login' ) {
+    } else if (hash === '#login') {
         showBackground();
-        clearVP()
+        clearVP();
         clearLogin();
         login();
-    }else if (hash === '#register' ) {      
+    } else if (hash === '#register') {
         showBackground();
-        clearVP()
+        clearVP();
         clearLogin();
-        register();    
-
-    }else if (hash === '#logout' ) {      
-        
+        register();
+    } else if (hash === '#logout') {
         setUsuarioAutenticado(false, -1);
         location.replace("tienda.html");
-
-    }else if (hash === '' ) {
-        clearVP()
+    } else if (hash === '') {
+        clearVP();
         hideBackground();
         Slider();
         Cover();
-        Carrusel();
+        Carrusel(); // Activa el carrusel solo en la página principal
         Info();
         listarProductos();
         Footer();
-    }    
-    console.log (hash);
+    }
+
+    console.log(hash);
 }
 
 function setSession(session){

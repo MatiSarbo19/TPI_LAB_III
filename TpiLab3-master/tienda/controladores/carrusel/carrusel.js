@@ -115,3 +115,11 @@ function startAutoSlide() {
     }, 5000); 
 }
 
+export function stopCarrusel() {
+    const seccionCarrusel = document.querySelector(".carrusel");
+    if (seccionCarrusel) {
+        seccionCarrusel.innerHTML = ""; // Limpia el contenido del carrusel
+        clearInterval(autoSlideInterval); // Detiene el intervalo
+    }
+}
+
