@@ -12,17 +12,18 @@ export function RouterTienda(){
     let hash = location.hash;
    
     if (hash === '#vistaProducto'){
-        hideBackground();
-        clearLogin()
+        clearLogin();
         vistaProducto();
 
     }else if (hash === '#login' ) {
         showBackground();
-        clearLogin()
+        clearVP()
+        clearLogin();
         login();
     }else if (hash === '#register' ) {      
         showBackground();
-        clearLogin()
+        clearVP()
+        clearLogin();
         register();    
 
     }else if (hash === '#logout' ) {      
@@ -31,13 +32,14 @@ export function RouterTienda(){
         location.replace("tienda.html");
 
     }else if (hash === '' ) {
+        clearVP()
         hideBackground();
         Slider();
         Cover();
         Carrusel();
         Info();
         listarProductos();
-        Footer()
+        Footer();
     }    
     console.log (hash);
 }
@@ -78,4 +80,9 @@ function clearLogin() {
     barra_coutas.style.display = 'none';
     info_extra.style.display = 'none';
     footer.style.display = 'none';
+}
+
+function clearVP() {
+    const vistaProducto = document.querySelector(".vistaProducto");
+    vistaProducto.style.display = 'none';
 }
