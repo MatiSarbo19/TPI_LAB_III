@@ -283,7 +283,7 @@ function validacionDatosRegistrar(password, repeatpassword) {
     const errores = [];
 
     // Validación de la seguridad de la contraseña
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordRegex = /^(?=.*[a-zñ])(?=.*[A-ZÑ])(?=.*\d)[A-Za-zñÑ\d]{8,}$/;
     if (password && !passwordRegex.test(password)) {
         errores.push({ campo: "loginPassword",mensaje: "La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula, una minúscula y un número." });
     }
